@@ -21,6 +21,24 @@ var pickerPad = new PickerPad(
 )
 ```
 
+PickerPad has a onchange event callback function to listen to any user inputs:
+```js
+pickerPad.onchange = (x, y) => {
+  // Do something with those values here
+}
+```
+
+To get the current value of the pad use
+```js
+pickerPad.x
+pickerPad.y
+```
+
+You can also set the cursor programmatically:
+```js
+pickerPad.set(0.5, 0.5)  // Set cursor to center
+```
+
 # Options
 `background`: Background color of the pad
 `segments`: Number of segments on the pad (Only visually)
