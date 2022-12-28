@@ -35,6 +35,7 @@ class PickerPad {
 
 		this.pickerPad.classList.add("picker-pad");
 
+
 		wrapperEl.appendChild(this.pickerPad);
 
 		this.ctx = this.pickerPad.getContext("2d");
@@ -45,12 +46,12 @@ class PickerPad {
 		this.pickerPad.addEventListener("mousemove", () => {
 			if (!mouseDown) return;
 
-			this.set(event.clientX, event.clientY);
+			this.set(event.clientX, event.clientY, true);
 		});
 
 		this.pickerPad.addEventListener("mousedown", (event) => {
 			mouseDown = true;
-			this.set(event.clientX, event.clientY);
+			this.set(event.clientX, event.clientY, true);
 		});
 
 		this.pickerPad.addEventListener("mouseout", () => {
@@ -60,26 +61,32 @@ class PickerPad {
 		this.pickerPad.addEventListener("mouseup", () => {
 			mouseDown = false;
 		});
+
+		setTimeout(() => {
+			this.set(0.5, 0.5);
+		}, 100);
 	}
 
-	set(posX, posY, unAbsolute=false) {
+	set(posX, posY, absolute=false) {
 		let pickerPadX = this.pickerPad.offsetLeft;
 		let pickerPadY = this.pickerPad.offsetTop;
 
 		let x, y;
 
-		if (unAbsolute) {
-			x = posX * this.size;
-			y = posY * this.size;
-
-			this.x = posX;
-			this.y = posY;
-		} else {
+		if (absolute) {
+			// Use values based on the size of the canvas
 			x = (posX - pickerPadX);
 			y = (posY - pickerPadY);
 
 			this.x = x / this.size;
 			this.y = y / this.size;
+		} else {
+			// Use values between 0 and 1
+			x = posX * this.size;
+			y = posY * this.size;
+
+			this.x = posX;
+			this.y = posY;
 		}
 
 		this.onchange(this.x, this.y);
