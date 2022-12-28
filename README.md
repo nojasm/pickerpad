@@ -12,7 +12,7 @@ The PickerPad class is defined as follows: `PickerPad(parent, size, texts, optio
 - Texts is either an empty list or a list with exactly 4 entries. It takes strings to display on the canvas (See examples)
 - Options is a list of options. Further later.
 
-```
+```js
 var pickerPad = new PickerPad(
   document.getElementById("my_pickerpad_wrapper"),
   300,
