@@ -118,12 +118,25 @@ class PickerPad {
 			this.ctx.stroke();
 		}
 
-		this.ctx.strokeStyle = this.options.ringColor || "#fff";
-		this.ctx.lineWidth = this.options.ringWidth || 3;
 
-		this.ctx.beginPath();
-		this.ctx.arc(x, y, 14, 0, 2 * Math.PI);
-		this.ctx.stroke();
+		if (this.options.ringFill == undefined || this.options.ringFill == false) {
+			this.ctx.strokeStyle = this.options.ringColor || "#fff";
+			this.ctx.lineWidth = this.options.ringWidth || 3;
+
+			this.ctx.beginPath();
+			this.ctx.arc(x, y, 14, 0, 2 * Math.PI);
+			this.ctx.stroke();
+		} else {
+			this.ctx.fillStyle = this.options.ringColor || "#fff";
+			this.ctx.lineWidth = this.options.ringWidth || 3;
+
+			this.ctx.beginPath();
+			this.ctx.arc(x, y, 14, 0, 2 * Math.PI);
+			this.ctx.fill();
+		}
+
+
+
 
 		if (this.texts == undefined || this.texts.length == 0) return;
 
